@@ -16,6 +16,11 @@
 		C7B2524D2518E3C3007D54EE /* StartScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B2524C2518E3C3007D54EE /* StartScreenViewModel.swift */; };
 		C7B252552518E5D3007D54EE /* StartScreenProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B252542518E5D3007D54EE /* StartScreenProtocols.swift */; };
 		C7B25260251A0474007D54EE /* GameFieldBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B2525F251A0474007D54EE /* GameFieldBuilder.swift */; };
+		C7B2526B251DEEA0007D54EE /* SettingsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B2526A251DEEA0007D54EE /* SettingsBuilder.swift */; };
+		C7BB52EA252C713C009707D3 /* CodeNameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB52E9252C713B009707D3 /* CodeNameManager.swift */; };
+		C7BB52F5252DCF43009707D3 /* WordsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB52F4252DCF43009707D3 /* WordsManager.swift */; };
+		C7BB52FF252F33F7009707D3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB52FE252F33F6009707D3 /* Constants.swift */; };
+		C7BB530A2530898A009707D3 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB53092530898A009707D3 /* NavigationViewController.swift */; };
 		C7D6909C250240A90076AB2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D6909B250240A90076AB2B /* AppDelegate.swift */; };
 		C7D6909E250240A90076AB2B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D6909D250240A90076AB2B /* SceneDelegate.swift */; };
 		C7D690A5250240AA0076AB2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7D690A4250240AA0076AB2B /* Assets.xcassets */; };
@@ -34,7 +39,6 @@
 		C7D690E225050A1D0076AB2B /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D690E125050A1D0076AB2B /* GameView.swift */; };
 		C7D690EB250749C70076AB2B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D690EA250749C70076AB2B /* SettingsView.swift */; };
 		C7FDDADE250BAD2500211691 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDDADD250BAD2500211691 /* Team.swift */; };
-		C7FDDAE0250BB2A200211691 /* GameViewSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDDADF250BB2A200211691 /* GameViewSettings.swift */; };
 		C7FDDAE2250BB31600211691 /* UserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDDAE1250BB31600211691 /* UserType.swift */; };
 		C7FDDAE4250BC0C100211691 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDDAE3250BC0C100211691 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
@@ -66,6 +70,11 @@
 		C7B2524C2518E3C3007D54EE /* StartScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenViewModel.swift; sourceTree = "<group>"; };
 		C7B252542518E5D3007D54EE /* StartScreenProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenProtocols.swift; sourceTree = "<group>"; };
 		C7B2525F251A0474007D54EE /* GameFieldBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFieldBuilder.swift; sourceTree = "<group>"; };
+		C7B2526A251DEEA0007D54EE /* SettingsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBuilder.swift; sourceTree = "<group>"; };
+		C7BB52E9252C713B009707D3 /* CodeNameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeNameManager.swift; sourceTree = "<group>"; };
+		C7BB52F4252DCF43009707D3 /* WordsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsManager.swift; sourceTree = "<group>"; };
+		C7BB52FE252F33F6009707D3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C7BB53092530898A009707D3 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		C7D69098250240A90076AB2B /* Codenames.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Codenames.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7D6909B250240A90076AB2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7D6909D250240A90076AB2B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,7 +99,6 @@
 		C7D690E125050A1D0076AB2B /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		C7D690EA250749C70076AB2B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C7FDDADD250BAD2500211691 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
-		C7FDDADF250BB2A200211691 /* GameViewSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewSettings.swift; sourceTree = "<group>"; };
 		C7FDDAE1250BB31600211691 /* UserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserType.swift; sourceTree = "<group>"; };
 		C7FDDAE3250BC0C100211691 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		F21B788A71A027650EEBCEDE /* Pods-Codenames.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Codenames.release.xcconfig"; path = "Target Support Files/Pods-Codenames/Pods-Codenames.release.xcconfig"; sourceTree = "<group>"; };
@@ -143,9 +151,10 @@
 		C70E724825079DAE000A5CC0 /* SettingsView */ = {
 			isa = PBXGroup;
 			children = (
+				C7B2526A251DEEA0007D54EE /* SettingsBuilder.swift */,
 				C7D690EA250749C70076AB2B /* SettingsView.swift */,
-				C7D690DB25037BCA0076AB2B /* TeamScore.swift */,
 				C70E724A25079E3E000A5CC0 /* SettingsViewModel.swift */,
+				C7D690DB25037BCA0076AB2B /* TeamScore.swift */,
 			);
 			path = SettingsView;
 			sourceTree = "<group>";
@@ -160,7 +169,6 @@
 				C7D690D7250374D10076AB2B /* WordObject.swift */,
 				C7D690D3250285B60076AB2B /* WordButton.swift */,
 				C7FDDADD250BAD2500211691 /* Team.swift */,
-				C7FDDADF250BB2A200211691 /* GameViewSettings.swift */,
 				C7FDDAE1250BB31600211691 /* UserType.swift */,
 			);
 			path = GameView;
@@ -173,6 +181,24 @@
 				C7D6909D250240A90076AB2B /* SceneDelegate.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		C7BB52F9252DCF72009707D3 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				C7BB52E9252C713B009707D3 /* CodeNameManager.swift */,
+				C7BB52F4252DCF43009707D3 /* WordsManager.swift */,
+				C7FDDAE3250BC0C100211691 /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		C7BB52FA252DCF99009707D3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C7B252102516A4ED007D54EE /* Game.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C7D6908F250240A90076AB2B = {
@@ -200,6 +226,7 @@
 		C7D6909A250240A90076AB2B /* Codenames */ = {
 			isa = PBXGroup;
 			children = (
+				C7BB52FA252DCF99009707D3 /* Model */,
 				C7B251EE25160079007D54EE /* Application */,
 				C7D690A4250240AA0076AB2B /* Assets.xcassets */,
 				C7D690A6250240AA0076AB2B /* LaunchScreen.storyboard */,
@@ -207,8 +234,9 @@
 				C7D690A9250240AA0076AB2B /* Info.plist */,
 				C7D690D52502C3E50076AB2B /* StartScreen */,
 				C7D690D62502C3F80076AB2B /* GameField */,
-				C7FDDAE3250BC0C100211691 /* NetworkManager.swift */,
-				C7B252102516A4ED007D54EE /* Game.swift */,
+				C7BB52F9252DCF72009707D3 /* Network */,
+				C7BB52FE252F33F6009707D3 /* Constants.swift */,
+				C7BB53092530898A009707D3 /* NavigationViewController.swift */,
 			);
 			path = Codenames;
 			sourceTree = "<group>";
@@ -432,16 +460,19 @@
 			files = (
 				C7FDDAE4250BC0C100211691 /* NetworkManager.swift in Sources */,
 				C7B252552518E5D3007D54EE /* StartScreenProtocols.swift in Sources */,
-				C7FDDAE0250BB2A200211691 /* GameViewSettings.swift in Sources */,
 				C70E724D2507D0F1000A5CC0 /* Protocols.swift in Sources */,
 				C7B2524D2518E3C3007D54EE /* StartScreenViewModel.swift in Sources */,
 				C7D6909C250240A90076AB2B /* AppDelegate.swift in Sources */,
+				C7BB52F5252DCF43009707D3 /* WordsManager.swift in Sources */,
 				C7B25260251A0474007D54EE /* GameFieldBuilder.swift in Sources */,
 				C7D690D2250271A20076AB2B /* GameFieldViewController.swift in Sources */,
 				C7D690CE25025A180076AB2B /* StartButton.swift in Sources */,
+				C7B2526B251DEEA0007D54EE /* SettingsBuilder.swift in Sources */,
 				C7B2522A2516A7AE007D54EE /* GameManagerBuilder.swift in Sources */,
+				C7BB52EA252C713C009707D3 /* CodeNameManager.swift in Sources */,
 				C7D690CC250259640076AB2B /* StartScreenViewController.swift in Sources */,
 				C7D690D4250285B60076AB2B /* WordButton.swift in Sources */,
+				C7BB530A2530898A009707D3 /* NavigationViewController.swift in Sources */,
 				C7D690DC25037BCA0076AB2B /* TeamScore.swift in Sources */,
 				C7D690DA25037B3B0076AB2B /* GameFieldViewModel.swift in Sources */,
 				C7D690D8250374D10076AB2B /* WordObject.swift in Sources */,
@@ -454,6 +485,7 @@
 				C7D690DE2504DF580076AB2B /* GameManager.swift in Sources */,
 				C7D690EB250749C70076AB2B /* SettingsView.swift in Sources */,
 				C70E724B25079E3E000A5CC0 /* SettingsViewModel.swift in Sources */,
+				C7BB52FF252F33F7009707D3 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,7 +658,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = mdeshina.Codenames;
+				PRODUCT_BUNDLE_IDENTIFIER = com.deshinamariia.codenames;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -645,7 +677,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = mdeshina.Codenames;
+				PRODUCT_BUNDLE_IDENTIFIER = com.deshinamariia.codenames;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

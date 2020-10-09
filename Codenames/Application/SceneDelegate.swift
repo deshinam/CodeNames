@@ -9,7 +9,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         FirebaseApp.configure()
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let navigationController = UINavigationController()
+        let navigationController = NavigationViewController()
         let startScreen = StartScreenViewController()
         navigationController.viewControllers = [startScreen]
         window?.rootViewController = navigationController

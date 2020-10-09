@@ -5,7 +5,7 @@ import SnapKit
 final class GameView: UIView {
     
     var wordButtons = [UIButton] ()
-    var buttonTapped: ((UIColor, Int)->())?
+    var buttonTapped: ((Int)->())?
     
     private var countOfColumns: CGFloat = 5.0
     private var countOfRows: CGFloat = 6.0
@@ -21,11 +21,15 @@ final class GameView: UIView {
     
     func setupView(words: [WordObject], userType: UserType) {
         wordsObjects = words
+       // let  gameWords = ["dog","cat","orange","apple","table","footbal","man","shop","film","juice",
+              //                       "hand","spy","river","sister","actor","Moscow","London","cafe","boy","milk",
+             //                        "break","tea","flat","site","jacket","mirror","garlic","beef","friend","train"]
         var buttonId = 0
         for row in 0...Int(countOfRows)-1 {
             for column in 0...Int(countOfColumns)-1 {
                 let button = WordButton(frame: .zero)
                 button.tag = buttonId
+               // button.setTitle(gameWords[buttonId], for: .normal)
                 button.setTitle(wordsObjects![buttonId].word, for: .normal)
                 self.addSubview(button)
                 
@@ -50,6 +54,9 @@ final class GameView: UIView {
                     button.backgroundColor = wordsObjects![buttonId].color
                     break
                 case .player:
+                    if wordsObjects![buttonId].isOpened {
+                        button.backgroundColor = wordsObjects![buttonId].color
+                    }
                     button.addTarget(self, action: #selector(wordButtonTapped(sender:)), for: .touchUpInside)
                 }
                 buttonId += 1
@@ -57,14 +64,17 @@ final class GameView: UIView {
         }
     }
     
+    func updateButtonColors(words: [WordObject]) {
+        for i in 0..<words.count {
+            if words[i].isOpened {
+                wordButtons[i].backgroundColor = words[i].color
+            }
+        }
+    }
+    
     @objc private func wordButtonTapped(sender:UIButton) {
         guard wordsObjects != nil,
                 buttonTapped != nil else {return}
-        buttonTapped!(wordsObjects![sender.tag].color, sender.tag)
-        if wordsObjects![sender.tag].color == .black {
-             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "Leader"), object: nil, userInfo: ["leader": "Game over"])
-        } else if let team = wordsObjects![sender.tag].team  {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ButtonTapped"), object: nil, userInfo: ["Team" : team])
-        }
+        buttonTapped!(sender.tag)
     }
 }

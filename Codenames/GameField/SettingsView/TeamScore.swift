@@ -9,17 +9,6 @@ final class TeamScore {
         self.blueTeamScore = blueTeamScore
     }
     
-    func addWord (to team: Team) -> Team? {
-        switch team {
-            case .blueTeam: blueTeamScore = blueTeamScore - 1
-            case .redTeam: redTeamScore = redTeamScore - 1
-        }
-        if defineLider() {
-            return team
-        }
-        return nil
-    }
-    
     private func defineLider () -> Bool {
         return redTeamScore == 0 || blueTeamScore == 0
     }

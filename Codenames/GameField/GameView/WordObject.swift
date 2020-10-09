@@ -20,6 +20,23 @@ struct WordObject: Decodable, Encodable {
         self.isOpened = isOpened
     }
     
+    init() {
+        self.id = 0
+        self.word = ""
+        self.color = .white
+        self.team = nil
+        self.isOpened = false
+    }
+    
+    init(word: [String:String]) {
+        self.init()
+        self.id = word["id"] as? Int ?? 0
+        self.word = word["word"] ?? ""
+        self.color = self.stringColorToColor(str: word["color"] ?? "white")
+        self.isOpened = (word["isOpened"] == "true")
+        self.team = Team(rawValue: color)
+    }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
        
@@ -29,11 +46,13 @@ struct WordObject: Decodable, Encodable {
         
         let colorString = try container.decode(String.self, forKey: .color)
         if colorString == "red" {
-            color = .red
+            color = Constants.redColor
         } else if colorString == "blue" {
-            color = .blue
+            color = Constants.blueColor
+        } else if colorString == "white"{
+            color = Constants.grayColor
         } else {
-            color = .white
+            color = .black
         }
     }
     
@@ -55,13 +74,31 @@ struct WordObject: Decodable, Encodable {
     }
     
     func colorToString() -> String {
-        if color == .red {
+        if color == Constants.redColor {
             return "red"
-        } else if color == .blue {
+        } else if color == Constants.blueColor {
             return "blue"
-        } else {
+        } else if color == Constants.grayColor {
             return "white"
         }
+        else {
+            return "black"
+        }
     }
+    
+    func stringColorToColor(str: String) -> UIColor {
+        if str == "red" {
+            return Constants.redColor
+        } else if str == "blue" {
+            return Constants.blueColor
+        } else if str == "white" {
+            return Constants.grayColor
+        } else {
+            return .black
+        }
+    }
+    
+    
+
 }
 

@@ -1,33 +1,56 @@
 import UIKit
 
 final class GameFieldViewModel: GameFieldViewModelProtocol {
-    
-    var buttonTapped: ((UIColor, Int) -> ())?
+
+    var buttonTapped: ((Int) -> ())?
     var setWords: (([WordObject]) -> ())?
-    var wordsForGame: [WordObject]!
     var showLeader: ((String) ->())?
-    private let gameManager = GameManagerBuilder().build()
-    private var currentGame: Game
+    private let gameManager: GameManager
+    var finishGame: ((Team?)->())? {
+        get {
+            return nil
+        }
+        set {
+            gameManager.finishGame = newValue
+        }
+    }
+    var gameIsnotValid: (()->())? {
+        get {
+            return nil
+        }
+        set {
+            if newValue != nil {
+                gameManager.subscribeToError(newValue!)
+            }
+        }
+    }
     
-    init(game: Game) {
-        currentGame = game
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(showLeader(_:)), name: NSNotification.Name(rawValue: "Leader"), object: nil)
+    init(gameManager: GameManager) {
+        self.gameManager = gameManager
+        gameManager.subscribeToUpdate({ [weak self] game in
+            if self?.setWords != nil {
+                self?.setWords! (game.words)
+            }
+        })
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func wordTapped(buttonId: Int) {
-        buttonTapped!(wordsForGame[buttonId].color, buttonId)
-        if wordsForGame[buttonId].color == .black {
-            
-        }
+    func cellIsOpened(id: Int) {
+        gameManager.cellIsOpened(id: id)
     }
     
-    @objc func showLeader(_ notification: Notification) {
-        showLeader!(notification.userInfo!["leader"] as! String)
+    func getGameManager() -> GameManager {
+        return gameManager
+    }
+    
+    func getWords() {
+        if setWords != nil {
+            setWords!(gameManager.getWords())
+        }
+        
     }
 }
 

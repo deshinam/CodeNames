@@ -16,15 +16,15 @@ extension Team: RawRepresentable {
     typealias RawValue = UIColor
     init?(rawValue: RawValue) {
         switch rawValue {
-        case .systemRed: self = .redTeam
-        case .systemBlue: self = .blueTeam
+        case Constants.redColor: self = .redTeam
+        case Constants.blueColor: self = .blueTeam
         default: return nil
         }
     }
     var rawValue: RawValue {
         switch self {
-        case .redTeam: return .systemRed
-        case .blueTeam: return .systemBlue
+        case .redTeam: return Constants.redColor
+        case .blueTeam: return Constants.blueColor
         }
     }
 }

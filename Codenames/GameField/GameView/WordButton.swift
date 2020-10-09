@@ -8,6 +8,8 @@ final class WordButton: UIButton {
         self.layer.borderWidth = 3
         self.backgroundColor = .white
         self.setTitleColor(.darkGray, for: .normal)
+        self.titleLabel?.numberOfLines = 2
+        self.titleLabel?.textAlignment = .center
     }
     
     required init?(coder: NSCoder) {

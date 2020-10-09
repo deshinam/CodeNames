@@ -4,13 +4,13 @@ import SnapKit
 
 final class SettingsView: UIView {
     // MARK: — Private Properties
-    private var settingdViewModel = SettingsViewModel()
+    private var settingsViewModel: SettingsViewModel
     
     private var redTeamScore: UILabel = {
         let redTeamScore = UILabel()
         redTeamScore.textAlignment = .center
         redTeamScore.textColor = .white
-        redTeamScore.backgroundColor = .systemRed
+        redTeamScore.backgroundColor = Constants.redColor
         redTeamScore.translatesAutoresizingMaskIntoConstraints = false
         return redTeamScore
     }()
@@ -19,19 +19,29 @@ final class SettingsView: UIView {
         let blueTeamScore = UILabel()
         blueTeamScore.textAlignment = .center
         blueTeamScore.textColor = .white
-        blueTeamScore.backgroundColor = .systemBlue
+        blueTeamScore.backgroundColor = Constants.blueColor
         blueTeamScore.translatesAutoresizingMaskIntoConstraints = false
         return blueTeamScore
     }()
     
+    private var backButton: UIButton = {
+        let backButton = UIButton()
+        backButton.layer.borderColor = UIColor.systemGray5.cgColor
+        backButton.layer.borderWidth = 1
+        backButton.layer.cornerRadius = 10
+        backButton.setTitleColor(.white, for: .normal)
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        return backButton
+    }()
+    
     // MARK: — Initializers
-    init () {
+    init (settingsViewModel: SettingsViewModel) {
+        self.settingsViewModel = settingsViewModel
         super.init(frame: .zero)
-        settingdViewModel.setTeamScores = {[weak self] (red, blue) in
+        settingsViewModel.setTeamScores = {[weak self] (red, blue) in
             self?.redTeamScore.text = String (red)
             self?.blueTeamScore.text = String (blue)
         }
-        settingdViewModel.updateScores()
     }
     
     required init?(coder: NSCoder) {
@@ -55,6 +65,23 @@ final class SettingsView: UIView {
             make.height.equalTo(self.snp.height)
             make.width.equalTo(self.snp.width).multipliedBy(0.4)
         }
+        
+        self.addSubview(backButton)
+        backButton.setTitle("Back", for: .normal)
+        backButton.snp.makeConstraints { make in
+            make.centerY.equalTo(self)
+            make.centerX.equalTo(self)
+            make.height.equalTo(self.snp.height).multipliedBy(0.5)
+            make.width.equalTo(self.snp.width).multipliedBy(0.15)
+        }
+        backButton.addTarget(self, action: #selector(backButtonTapped(sender:)), for: .touchUpInside)
+
     }
+    
+    @objc func backButtonTapped(sender: UIButton) {
+        guard settingsViewModel.dismissAction != nil else { return }
+        settingsViewModel.dismissAction!()
+    }
+    
 }
 
