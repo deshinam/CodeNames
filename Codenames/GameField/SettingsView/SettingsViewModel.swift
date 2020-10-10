@@ -1,11 +1,14 @@
 import Foundation
 
-class SettingsViewModel {
+final class SettingsViewModel {
+    // MARK: — Private Properties
+    private var gameManager: GameManager
     
+    // MARK: — Public Properties
     var setTeamScores: ((Int, Int) -> ())?
     var dismissAction: (() -> ())?
-    private var gameManager: GameManager
  
+    // MARK: — Initializers
     init(gameManager: GameManager) {
         self.gameManager = gameManager
         gameManager.subscribeToUpdate({[weak self] game in

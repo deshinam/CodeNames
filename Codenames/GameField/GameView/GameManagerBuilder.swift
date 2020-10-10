@@ -1,7 +1,7 @@
 import Foundation
 import Swinject
 
-class GameManagerBuilder {
+final class GameManagerBuilder {
     func build() -> GameManager {
         let container = Container()
         container.register(NetworkManager.self) { _ in

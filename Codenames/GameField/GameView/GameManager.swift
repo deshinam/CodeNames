@@ -1,7 +1,7 @@
 import UIKit
 
 final class GameManager {
-    
+    // MARK: — Private Properties
     private var countOfCells = 3
     private var networkManager: NetworkManager
     private var codeNameManager: CodeNameManager
@@ -9,9 +9,12 @@ final class GameManager {
     private var codeName = "l"
     private var game: Game?
     private var updateGame: [((Game)->())]?
-    var finishGame: ((Team?)->())?
     private var gameIsnotValid: [()->()]
     
+    // MARK: — Public Properties
+    var finishGame: ((Team?)->())?
+    
+    // MARK: — Initializers
     init(networkManager: NetworkManager) {
         self.networkManager = networkManager
         codeNameManager = CodeNameManager()
@@ -20,7 +23,7 @@ final class GameManager {
         gameIsnotValid = []
         networkManager.updateGame = {[weak self] data in
             guard let gameCode = self?.codeName else {return}
-            self?.game = Game(codeName: gameCode, lastUpdate: data["lastUpdate"] as? Double ?? 0, words: data["words"] as? [[String:String]] ?? [])
+            self?.game = Game(codeName: gameCode, words: data["words"] as? [[String:String]] ?? [])
             if self?.game != nil {
                 self?.updateGame?.forEach { updateAction in
                     if self?.game != nil {
@@ -34,17 +37,16 @@ final class GameManager {
         }
     }
     
+    // MARK: — Public Methods
     func generateGame (callback: @escaping (Game?)->()) {
         DispatchQueue.global(qos: .background).sync {
             codeNameManager.getCodeName(closure: { [weak self] data in
                 self?.codeName = data
-                print("new code Name: \(self?.codeName)")
                 self?.wordsManager.generateWords(closure: {data in
                     guard let game = self?.generateWords(data: data) else {return}
                     let gameData = game.toDictionary()[game.codeName] as? [String:Any]
                     self?.networkManager.save(codeName: game.codeName, gameData: gameData ?? [:])
                     callback(game)
-                    
                 })
             })
         }
@@ -54,9 +56,8 @@ final class GameManager {
         var wordObjects = [WordObject]()
         var colors: [CellsSettings] = [CellsSettings(color: Constants.redColor, count: 10),
                                        CellsSettings(color: Constants.blueColor, count: 9),
-                                               CellsSettings(color: .black, count: 1),
-                                               CellsSettings(color: Constants.grayColor, count: 10)]
-        print(wordObjects)
+                                       CellsSettings(color: .black, count: 1),
+                                       CellsSettings(color: Constants.grayColor, count: 10)]
         var wordIndex = 0
         repeat {
             let word = data[wordIndex]
@@ -75,8 +76,7 @@ final class GameManager {
             wordObjects.append(WordObject(id: wordObjects.count, word: word, color: color, team: team, isOpened: false))
             wordIndex += 1
         } while wordObjects.count < 30
-        print(wordObjects.count)
-        let game = Game(codeName: codeName, lastUpdate: Date().timeIntervalSince1970 as Double, words: wordObjects)
+        let game = Game(codeName: codeName, words: wordObjects)
         return game
     }
     
@@ -93,6 +93,7 @@ final class GameManager {
     }
     
     func cellIsOpened(id: Int) {
+        codeNameManager.updateLastEditDate(codeName: codeName)
         if game?.words[id].color == .black {
             let gameData = game?.toDictionaryWithOpenCells()[codeName] as? [String:Any]
             networkManager.openAllCells(codeName:codeName, game: gameData ?? [:])

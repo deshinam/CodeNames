@@ -2,13 +2,14 @@ import UIKit
 import SnapKit
 
 final class GameFieldViewController: UIViewController {
-    
+    // MARK: — Private Methods
     private var teamsScore: TeamScore?
     private var gameView: GameView?
     private var userType: UserType
     private var viewModel: GameFieldViewModelProtocol
     private var settingsView: SettingsView
     
+    // MARK: — Initializers
     init(userType: UserType,viewModel: GameFieldViewModelProtocol) {
         self.userType = userType
         self.viewModel = viewModel
@@ -41,6 +42,7 @@ final class GameFieldViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: — Lifecycle
     override func viewDidLoad() {
         navigationController?.setNavigationBarHidden(true, animated: true)
         super.viewDidLoad()
@@ -65,13 +67,12 @@ final class GameFieldViewController: UIViewController {
         viewModel.getWords()
     }
     
+    // MARK: — Private Methods
     private func setupViewController() {
         let safeAreaLayoutGuide = view.safeAreaLayoutGuide
         
         settingsView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(settingsView)
-        print(view.frame)
-        print(settingsView.frame)
         settingsView.snp.makeConstraints { make in
             make.bottom.equalTo(safeAreaLayoutGuide.snp.bottomMargin)
             make.height.equalTo(100)
@@ -91,9 +92,7 @@ final class GameFieldViewController: UIViewController {
             make.trailing.equalTo(safeAreaLayoutGuide.snp.trailingMargin)
             make.leading.equalTo(safeAreaLayoutGuide.snp.leadingMargin)
         }
-        
     }
-    
 }
 
 

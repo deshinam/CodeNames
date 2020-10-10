@@ -1,11 +1,10 @@
 import Foundation
 
-
 typealias GameStatus = (isFinished: Bool, winner: Team?)
-class Game {
+final class Game {
+    // MARK: — Public Properties
     var codeName: String
     var words: [WordObject]
-    var lastUpdate: Double
     var teamScore: TeamScore {
         let teamScore = TeamScore(redTeamScore: 0, blueTeamScore: 0)
         words.forEach { word in
@@ -19,7 +18,6 @@ class Game {
         }
         return teamScore
     }
-    
     var isGameOver: GameStatus {
         if teamScore.redTeamScore == 0 && teamScore.blueTeamScore == 0 {
             return GameStatus(true, nil)
@@ -29,27 +27,26 @@ class Game {
         return GameStatus(false, nil)
     }
     
+    // MARK: — Initializers
     init() {
         codeName = ""
         words = []
-        lastUpdate = 0
     }
     
-    init(codeName: String, lastUpdate: Double, words: [WordObject]) {
+    init(codeName: String, words: [WordObject]) {
         self.codeName = codeName
         self.words = words
-        self.lastUpdate = lastUpdate
     }
     
-    convenience init(codeName: String, lastUpdate: Double, words: [[String:String]]) {
+    convenience init(codeName: String, words: [[String:String]]) {
         self.init()
         self.codeName = codeName
-        self.lastUpdate = lastUpdate
         words.forEach {[weak self] word in
             self?.words.append(WordObject(word: word))
         }
     }
     
+    // MARK: — Public Methods
     func toDictionary() -> [String:Any] {
         var wordsToDictionary: [[String:String]] = []
         words.forEach{ word in
@@ -57,7 +54,6 @@ class Game {
         }
         var gameToDictionary: [String:Any] = [:]
         gameToDictionary["words"] = wordsToDictionary
-        gameToDictionary["lastUpdate"] = lastUpdate
         return [codeName:gameToDictionary]
     }
     
@@ -68,12 +64,8 @@ class Game {
             openedWord["isOpened"] = "true"
             wordsToDictionary.append(openedWord)
         }
-        
         var gameToDictionary: [String:Any] = [:]
         gameToDictionary["words"] = wordsToDictionary
-        gameToDictionary["lastUpdate"] = lastUpdate
         return [codeName:gameToDictionary]
     }
-    
-
 }

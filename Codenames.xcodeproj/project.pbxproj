@@ -21,6 +21,7 @@
 		C7BB52F5252DCF43009707D3 /* WordsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB52F4252DCF43009707D3 /* WordsManager.swift */; };
 		C7BB52FF252F33F7009707D3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB52FE252F33F6009707D3 /* Constants.swift */; };
 		C7BB530A2530898A009707D3 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB53092530898A009707D3 /* NavigationViewController.swift */; };
+		C7BB531825309F4A009707D3 /* String+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB531725309F49009707D3 /* String+Random.swift */; };
 		C7D6909C250240A90076AB2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D6909B250240A90076AB2B /* AppDelegate.swift */; };
 		C7D6909E250240A90076AB2B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D6909D250240A90076AB2B /* SceneDelegate.swift */; };
 		C7D690A5250240AA0076AB2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7D690A4250240AA0076AB2B /* Assets.xcassets */; };
@@ -75,6 +76,7 @@
 		C7BB52F4252DCF43009707D3 /* WordsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsManager.swift; sourceTree = "<group>"; };
 		C7BB52FE252F33F6009707D3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C7BB53092530898A009707D3 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		C7BB531725309F49009707D3 /* String+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Random.swift"; sourceTree = "<group>"; };
 		C7D69098250240A90076AB2B /* Codenames.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Codenames.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7D6909B250240A90076AB2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7D6909D250240A90076AB2B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				C7BB52F9252DCF72009707D3 /* Network */,
 				C7BB52FE252F33F6009707D3 /* Constants.swift */,
 				C7BB53092530898A009707D3 /* NavigationViewController.swift */,
+				C7BB531725309F49009707D3 /* String+Random.swift */,
 			);
 			path = Codenames;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				C7BB530A2530898A009707D3 /* NavigationViewController.swift in Sources */,
 				C7D690DC25037BCA0076AB2B /* TeamScore.swift in Sources */,
 				C7D690DA25037B3B0076AB2B /* GameFieldViewModel.swift in Sources */,
+				C7BB531825309F4A009707D3 /* String+Random.swift in Sources */,
 				C7D690D8250374D10076AB2B /* WordObject.swift in Sources */,
 				C7B252112516A4ED007D54EE /* Game.swift in Sources */,
 				C7D6909E250240A90076AB2B /* SceneDelegate.swift in Sources */,
@@ -658,6 +662,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.deshinamariia.codenames;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -677,6 +682,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.deshinamariia.codenames;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

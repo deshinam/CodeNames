@@ -3,14 +3,16 @@ import UIKit
 import SnapKit
 
 final class GameView: UIView {
-    
-    var wordButtons = [UIButton] ()
-    var buttonTapped: ((Int)->())?
-    
+    // MARK: — Private Properties
     private var countOfColumns: CGFloat = 5.0
     private var countOfRows: CGFloat = 6.0
     private var wordsObjects: [WordObject]?
     
+    // MARK: — Public Properties
+    var wordButtons = [UIButton] ()
+    var buttonTapped: ((Int)->())?
+    
+    // MARK: — Initializers
     init () {
         super.init(frame: .zero)
     }
@@ -19,17 +21,22 @@ final class GameView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: — Private Methods
+    @objc private func wordButtonTapped(sender:UIButton) {
+        guard wordsObjects != nil,
+              buttonTapped != nil else {return}
+        buttonTapped!(sender.tag)
+    }
+    
+    // MARK: — Public Methods
     func setupView(words: [WordObject], userType: UserType) {
         wordsObjects = words
-       // let  gameWords = ["dog","cat","orange","apple","table","footbal","man","shop","film","juice",
-              //                       "hand","spy","river","sister","actor","Moscow","London","cafe","boy","milk",
-             //                        "break","tea","flat","site","jacket","mirror","garlic","beef","friend","train"]
         var buttonId = 0
         for row in 0...Int(countOfRows)-1 {
             for column in 0...Int(countOfColumns)-1 {
                 let button = WordButton(frame: .zero)
                 button.tag = buttonId
-               // button.setTitle(gameWords[buttonId], for: .normal)
+                // button.setTitle(gameWords[buttonId], for: .normal)
                 button.setTitle(wordsObjects![buttonId].word, for: .normal)
                 self.addSubview(button)
                 
@@ -70,11 +77,5 @@ final class GameView: UIView {
                 wordButtons[i].backgroundColor = words[i].color
             }
         }
-    }
-    
-    @objc private func wordButtonTapped(sender:UIButton) {
-        guard wordsObjects != nil,
-                buttonTapped != nil else {return}
-        buttonTapped!(sender.tag)
     }
 }

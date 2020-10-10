@@ -1,11 +1,32 @@
 import UIKit
 
-final class GameFieldViewModel: GameFieldViewModelProtocol {
-
+final class GameFieldViewModel {
+    // MARK: — Private Properties
+    private let gameManager: GameManager
+    
+    // MARK: — Public Properties
     var buttonTapped: ((Int) -> ())?
     var setWords: (([WordObject]) -> ())?
     var showLeader: ((String) ->())?
-    private let gameManager: GameManager
+    
+    // MARK: — Initializers
+    init(gameManager: GameManager) {
+        self.gameManager = gameManager
+        gameManager.subscribeToUpdate({ [weak self] game in
+            if self?.setWords != nil {
+                self?.setWords! (game.words)
+            }
+        })
+    }
+    
+    // MARK: — Deinitializers
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+}
+
+extension GameFieldViewModel: GameFieldViewModelProtocol {
+    // MARK: — Public Properties
     var finishGame: ((Team?)->())? {
         get {
             return nil
@@ -25,19 +46,7 @@ final class GameFieldViewModel: GameFieldViewModelProtocol {
         }
     }
     
-    init(gameManager: GameManager) {
-        self.gameManager = gameManager
-        gameManager.subscribeToUpdate({ [weak self] game in
-            if self?.setWords != nil {
-                self?.setWords! (game.words)
-            }
-        })
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
+    // MARK: — Public Methods
     func cellIsOpened(id: Int) {
         gameManager.cellIsOpened(id: id)
     }
@@ -50,7 +59,5 @@ final class GameFieldViewModel: GameFieldViewModelProtocol {
         if setWords != nil {
             setWords!(gameManager.getWords())
         }
-        
     }
 }
-

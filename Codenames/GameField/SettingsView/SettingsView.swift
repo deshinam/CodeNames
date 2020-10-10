@@ -5,7 +5,6 @@ import SnapKit
 final class SettingsView: UIView {
     // MARK: — Private Properties
     private var settingsViewModel: SettingsViewModel
-    
     private var redTeamScore: UILabel = {
         let redTeamScore = UILabel()
         redTeamScore.textAlignment = .center
@@ -14,7 +13,6 @@ final class SettingsView: UIView {
         redTeamScore.translatesAutoresizingMaskIntoConstraints = false
         return redTeamScore
     }()
-    
     private var blueTeamScore: UILabel = {
         let blueTeamScore = UILabel()
         blueTeamScore.textAlignment = .center
@@ -23,7 +21,6 @@ final class SettingsView: UIView {
         blueTeamScore.translatesAutoresizingMaskIntoConstraints = false
         return blueTeamScore
     }()
-    
     private var backButton: UIButton = {
         let backButton = UIButton()
         backButton.layer.borderColor = UIColor.systemGray5.cgColor
@@ -46,6 +43,12 @@ final class SettingsView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: — Private Methods
+    @objc private func backButtonTapped(sender: UIButton) {
+        guard settingsViewModel.dismissAction != nil else { return }
+        settingsViewModel.dismissAction!()
     }
     
     // MARK: — Public Methods
@@ -75,13 +78,5 @@ final class SettingsView: UIView {
             make.width.equalTo(self.snp.width).multipliedBy(0.15)
         }
         backButton.addTarget(self, action: #selector(backButtonTapped(sender:)), for: .touchUpInside)
-
     }
-    
-    @objc func backButtonTapped(sender: UIButton) {
-        guard settingsViewModel.dismissAction != nil else { return }
-        settingsViewModel.dismissAction!()
-    }
-    
 }
-

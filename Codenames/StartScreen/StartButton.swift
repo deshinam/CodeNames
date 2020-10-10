@@ -1,6 +1,7 @@
 import UIKit
 
 final class StartButton: UIButton {
+    // MARK: — Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false

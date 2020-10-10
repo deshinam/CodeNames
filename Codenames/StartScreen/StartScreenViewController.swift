@@ -2,18 +2,40 @@ import UIKit
 import SnapKit
 
 final class StartScreenViewController: UIViewController {
-    
+    // MARK: — Private Properties
     private var startCaptainButton: UIButton?
     private var startPlayersButton: UIButton?
     private var generateCodeButton: UIButton?
     private var viewModel: StartScreenViewModelProtocol = StartScreenViewModel()
+    private var codeTextLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.textColor = .darkGray
+        label.numberOfLines = 2
+        return label
+    }()
+    private var codeTextField: UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.layer.cornerRadius = 10
+        textField.textAlignment = .center
+        textField.layer.borderColor = UIColor.darkGray.cgColor
+        textField.layer.borderWidth = 1
+        textField.autocorrectionType = .no
+        return textField
+    }()
     
+    // MARK: — Lifecycle
     override func viewDidLoad() {
         navigationController?.setNavigationBarHidden(true, animated: true)
         super.viewDidLoad()
         view.backgroundColor = .white
         setupViewController()
-        
+    }
+    
+    // MARK: — Private Methods
+    private func setupClosures() {
         viewModel.setCodeName = { [weak self] codeName in
             DispatchQueue.main.async {
                 self?.codeTextField.text = codeName
@@ -31,34 +53,14 @@ final class StartScreenViewController: UIViewController {
         self.viewModel.showGameField =  {[weak self] gameField in
             self?.show(gameField, sender: nil)
         }
-        
-        let tapGesture = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
-        view.addGestureRecognizer(tapGesture)
     }
-    
-    private var codeTextLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
-        label.textColor = .darkGray
-        label.numberOfLines = 2
-        return label
-    }()
-    
-    private var codeTextField: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.layer.cornerRadius = 10
-        textField.textAlignment = .center
-        textField.layer.borderColor = UIColor.darkGray.cgColor
-        textField.layer.borderWidth = 1
-        textField.autocorrectionType = .no
-        return textField
-    }()
     
     private func setupViewController() {
         setupElements()
         setUpConstraints()
+        setupClosures()
+        let tapGesture = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        view.addGestureRecognizer(tapGesture)
     }
     
     private func setupElements() {
@@ -131,13 +133,11 @@ final class StartScreenViewController: UIViewController {
                 break
             }
         }
-
     }
     
     @objc private func generateGame(_ sender: UIButton?) {
         view.endEditing(true)
         viewModel.generateGame()
     }
-    
 }
 

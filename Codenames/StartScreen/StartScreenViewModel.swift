@@ -1,10 +1,17 @@
 import Foundation
 
-class StartScreenViewModel: StartScreenViewModelProtocol {    
+final class StartScreenViewModel {
+    // MARK: — Private Properties
     private let gameManager = GameManagerBuilder().build()
     private var game: Game?
+    
+    // MARK: — Public Properties
     var showGameField: ((GameFieldViewController)->())?
     var setCodeName: ((String) -> ())?
+}
+
+extension StartScreenViewModel: StartScreenViewModelProtocol {
+    // MARK: — Public Properties
     var gameIsnotValid: (()->())? {
         get {
             return nil
@@ -16,9 +23,9 @@ class StartScreenViewModel: StartScreenViewModelProtocol {
         }
     }
     
+    // MARK: — Public Methods
     func generateGame() {
         gameManager.generateGame(callback: { [weak self] game in
-            print("Game was generated: \(game?.codeName)")
             self?.setCodeName?(game?.codeName ?? "error")
             self?.game = game
         })
